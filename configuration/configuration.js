@@ -1,1 +1,1 @@
-const domain = 'https://componentes-desarrollo.idee.es/api-idee/';
+const domain = 'https://componentes.idee.es/api-idee/';
