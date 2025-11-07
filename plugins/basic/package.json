@@ -1,7 +1,7 @@
 {
   "name": "Basic",
   "version": "1.0.0",
-  "description": "",
+  "description": "Plugin plantilla para crear otros plugins",
   "keywords": [
     "map",
     "mapping",
@@ -24,7 +24,7 @@
     "check": "eslint ./src",
     "fix": "eslint --fix ./src"
   },
-  "author": "",
+  "author": "API-IDEE Community Plugins",
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.51",
     "@babel/plugin-proposal-export-default-from": "^7.0.0-beta.51",

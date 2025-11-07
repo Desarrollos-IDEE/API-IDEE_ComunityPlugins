@@ -5,28 +5,33 @@
 
 # Descripción
 
-Plugin básico para crear otros plugins
+Plugin básico (plantilla) para crear otros plugins.
 
 # Dependencias
 
 Para que el plugin funcione correctamente es necesario importar las siguientes dependencias en el documento html:
-
+Para uso de implementación OpenLayers:
 - **basic.ol.min.js**
 - **basic.ol.min.css**
+Para uso de implementación Cesium:
+- **basic.cesium.min.js**
+- **basic.cesium.min.css**
 
 
 ```html
- <link href="https://componentes.idee.es/api-idee/plugins/basic/basic.ol.min.css" rel="stylesheet" />
- <script type="text/javascript" src="https://componentes.idee.es/api-idee/plugins/basic/basic.ol.min.js"></script>
+<link href="https://componentes.idee.es/api-idee-communityplugins/plugins/basic/dist/basic.ol.min.css" rel="stylesheet" />
+<script type="text/javascript" src="https://componentes.idee.es/api-idee-communityplugins/plugins/basic/dist/basic.ol.min.js"></script>
 ```
 
 # Uso del histórico de versiones
 
-Existe un histórico de versiones de todos los plugins de API-IDEE en [api-idee-legacy](https://github.com/Desarrollos-IDEE/API-IDEE/tree/master/api-idee-legacy/plugins) para hacer uso de versiones anteriores.
-Ejemplo:
+Existe un histórico de versiones de todos los plugins en el directorio `legacy/` de cada plugin. 
+Es recomendable fijar las versiones para evitar errores inesperados.
+
+Ejemplo con el plugin Basic, implementación OpenLayers y versión 1.0.0:
 ```html
- <link href="https://componentes.idee.es/api-idee/plugins/basic/basic-1.0.0.ol.min.css" rel="stylesheet" />
- <script type="text/javascript" src="https://componentes.idee.es/api-idee/plugins/basic/basic-1.0.0.ol.min.js"></script>
+<link href="https://componentes.idee.es/api-idee-communityplugins/plugins/basic/legacy/basic-1.0.0.ol.min.css" rel="stylesheet" />
+<script type="text/javascript" src="https://componentes.idee.es/api-idee-communityplugins/plugins/basic/legacy/basic-1.0.0.ol.min.js"></script>
 ```
 
 # Parámetros
@@ -43,70 +48,16 @@ El constructor se inicializa con un JSON con los siguientes atributos:
 - **tooltip**. Información emergente para mostrar en el tooltip del plugin (se muestra al dejar el ratón encima del plugin como información). Por defecto: 'Plantilla plugin'
 - **draggable**. Indica si el plugin puede arrastrarse.
 
-# API-REST
-
-```javascript
-URL_API?basic=position*collapsed*collapsible*tooltip*draggable
-```
-
-<table>
-  <tr>
-    <th>Parámetros</th>
-    <th>Opciones/Descripción</th>
-    <th>Disponibilidad</th>
-  </tr>
-  <tr>
-    <td>position</td>
-    <td>TR/TL/BR/BL</td>
-    <td>Base64 ✔️ | Separador ✔️</td>
-  </tr>
-  <tr>
-    <td>collapsed</td>
-    <td>true/false</td>
-    <td>Base64 ✔️ | Separador ✔️</td>
-  </tr>
-  <tr>
-    <td>collapsible</td>
-    <td>true/false</td>
-    <td>Base64 ✔️ | Separador ✔️</td>
-  </tr>
-  <tr>
-    <td>tooltip</td>
-    <td>Valor a usar para mostrar en el tooltip del plugin</td>
-    <td>Base64 ✔️ | Separador ✔️</td>
-  </tr>
-</table>
-
-
-### Ejemplos de uso API-REST
-
-```
-https://componentes.idee.es/api-idee/?basic=TR*true*true*PluginBase
-```
-
-```
-https://componentes.idee.es/api-idee/?basic=TR*true*true
-```
-
-### Ejemplos de uso API-REST en base64
-
-Ejemplo del constructor:
-```javascript
-{
-  position:"TL",
-  tooltip:"Plugin Base"
-}
-```
-```
-https://componentes.idee.es/api-idee/?basic=base64=eyJwb3NpdGlvbiI6IlRMIiwiZGVzY2FyZ2FzY25pZyI6Imh0dHA6Ly9jZW50cm9kZWRlc2Nhcmdhcy5jbmlnLmVzL0NlbnRyb0Rlc2Nhcmdhcy9pbmRleC5qc3AiLCJwbm9hIjoiaHR0cHM6Ly93d3cuaWduLmVzL3dlYi9jb21wYXJhZG9yX3Bub2EvaW5kZXguaHRtbCIsInZpc3VhbGl6YWRvcjNkIjoiaHR0cHM6Ly93d3cuaWduLmVzLzNELVN0ZXJlby8iLCJmb3RvdGVjYSI6Imh0dHBzOi8vZm90b3RlY2EuY25pZy5lcy8iLCJ0d2l0dGVyIjoiaHR0cHM6Ly90d2l0dGVyLmNvbS9JR05TcGFpbiIsImluc3RhZ3JhbSI6Imh0dHBzOi8vd3d3Lmluc3RhZ3JhbS5jb20vaWduc3BhaW4vIiwiZmFjZWJvb2siOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vSUdOU3BhaW4vIiwicGludGVyZXN0IjoiaHR0cHM6Ly93d3cucGludGVyZXN0LmVzL0lHTlNwYWluLyIsInlvdXR1YmUiOiJodHRwczovL3d3dy55b3V0dWJlLmNvbS91c2VyL0lHTlNwYWluIiwibWFpbCI6Im1haWx0bzppZ25AZm9tZW50by5lcyIsInRvb2x0aXAiOiJDb250YWN0YSBjb24gbm9zb3Ryb3MifQ==
-```
-
 
 # Ejemplo de uso
 
 ```javascript
 const mp = new IDEE.plugin.Basic({
   position: 'TR',
+  collapsed: true,
+  collapsible: true,
+  tooltip: 'Plugin plantilla',
+  isDraggable: true,
 });
 
 map.addPlugin(mp);
@@ -116,9 +67,8 @@ map.addPlugin(mp);
 
 Para el stack de desarrollo de este componente se ha utilizado
 
-* NodeJS Version: 14.16
-* NPM Version: 6.14.11
-* Entorno Windows.
+* NodeJS Versión: 16 o superior
+* NPM Versión: 8.19.4 o superior
 
 ## 📐 Configuración del stack de desarrollo / *Work setup*
 
@@ -140,8 +90,8 @@ npm i
 ### 2️⃣ Arranque del servidor de desarrollo / *Run Application*
 
 ```bash
-npm start:ol
-npm start:cesium
+npm run start:ol
+npm run start:cesium
 ```
 
 ## 📂 Estructura del código / *Code scaffolding*
@@ -149,6 +99,7 @@ npm start:cesium
 ```any
 /
 ├── src 📦                  # Código fuente
+├── legacy 📁               # Histórico de versiones
 ├── task 📁                 # EndPoints
 ├── test 📁                 # Testing
 ├── webpack-config 📁       # Webpack configs
@@ -172,5 +123,3 @@ $npm i -g npm-check-updates
 $ncu
 ```
 
-## Tabla de compatibilidad de versiones   
-[Consulta el api resourcePlugin](https://componentes.idee.es/api-idee/api/actions/resourcesPlugins?name=basic)
